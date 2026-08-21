@@ -1,0 +1,7 @@
+# dsh-web-search-generic bundle patch: registers the generic search provider.
+- insert:
+    - id: web-search-generic
+      name: 'dsh-web-search-generic'
+      config:
+        backend: bing
+        maxResults: 8
