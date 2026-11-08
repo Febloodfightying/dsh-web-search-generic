@@ -29,11 +29,15 @@ Restart `dsh web` — the `web_search` tool will now use Bing search without req
 
 ## How it works
 
-The plugin scrapes Bing's HTML search results page and parses them into structured sources. No API key, no registration — works out of the box in any network environment where Bing is accessible.
+The provider first requests Bing's **RSS** output (`&format=rss`), which is
+stable, compact, and free of markup noise. If RSS is unavailable or returns no
+items, it falls back to scraping the HTML results page, taking each result's
+title from the `<h2>` anchor, decoding HTML entities (`&ensp;`, `&#0183;`, …),
+unwrapping Bing redirect links, and de-duplicating URLs.
 
 ## Prerequisites
 
-- DSH 0.1.0-rc.6 or newer
+- DSH 0.1.0-rc.6 or newer (peer range: `@deepseek-ai/dsh-web >=0.1.0-rc.8 <0.3.0-0`, so DSH 0.1.x and 0.2.x runtimes are accepted)
 - Network access to `www.bing.com`
 
 ## License
