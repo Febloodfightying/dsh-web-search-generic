@@ -37,8 +37,19 @@ unwrapping Bing redirect links, and de-duplicating URLs.
 
 ## Prerequisites
 
-- DSH 0.1.0-rc.6 or newer (peer range: `@deepseek-ai/dsh-web >=0.1.0-rc.8 <0.3.0-0`, so DSH 0.1.x and 0.2.x runtimes are accepted)
+- DSH 0.1.0-rc.6 or newer; tested against 0.1.0-rc.8 and 0.2.0-rc.2
 - Network access to `www.bing.com`
+
+## Compatibility
+
+This plugin declares **no `@deepseek-ai/dsh*` peer dependencies**, so DSH's
+profile compatibility preflight (and the plugin market's peer gate) never
+denies it, on any runtime version. DSH packages are imported from the running
+runtime through the profile's `node_modules` resolution base, so a DSH upgrade
+never requires reinstalling or re-granting an exemption for this plugin.
+
+At activation the plugin verifies that `ctx.web.registerSearchProvider` exists
+and throws a descriptive error if a future DSH version renames that seam.
 
 ## License
 
